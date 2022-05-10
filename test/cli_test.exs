@@ -2,13 +2,19 @@ defmodule ToyRobot.CLITest do
   use ExUnit.Case, async: true
   import ExUnit.CaptureIO
 
-  test "it can read a file and return a simulation" do
+  test "handles commands and reports successfully" do
+    commands_path = Path.expand("test/fixtures/commands.txt", File.cwd!())
+
     output =
       capture_io(fn ->
-        ToyRobot.CLI.main(["commands.txt"])
+        ToyRobot.CLI.main([commands_path])
       end)
 
-    assert output |> String.trim() == "The robot is at (0, 4) and is facing NORTH"
+    expected_output = """
+    The robot is at (0, 4) and is facing NORTH
+    """
+
+    assert String.trim(output) == String.trim(expected_output)
   end
 
   test "provides usage instructions if no arguments specified" do

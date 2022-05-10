@@ -2,8 +2,6 @@ defmodule ToyRobot.Table do
   defstruct [:north_boundary, :east_boundary]
   alias ToyRobot.Table
 
-  alias ToyRobot.Robot
-
   @doc """
   Determines if a position would within the table's boundaries.
 

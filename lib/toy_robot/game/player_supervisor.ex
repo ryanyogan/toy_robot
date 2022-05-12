@@ -6,10 +6,10 @@ defmodule ToyRobot.Game.PlayerSupervisor do
     DynamicSupervisor.start_link(__MODULE__, args, name: __MODULE__)
   end
 
-  def start_child(robot, name) do
+  def start_child(table, position, name) do
     DynamicSupervisor.start_child(
       __MODULE__,
-      {Player, [robot: robot, name: name]}
+      {Player, [table: table, position: position, name: name]}
     )
   end
 
